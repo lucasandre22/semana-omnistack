@@ -1,0 +1,4 @@
+yarn init -y -> init
+yarn add express -> add a new dependency called express to yarn file, you could use npm also
+yarn add nodemon -D -> it re-runs the code after a change, -D flag indicates that it is going to be used only in develop. Run yarn dev to start it
+the node_modules file: contains all the dependencies code
