@@ -1,0 +1,5 @@
+    MVC Pattern: models, view and controllers
+
+What is the purpuse of controllers?
+It contains the business rule of the application
+- receive a request, process it and give a response

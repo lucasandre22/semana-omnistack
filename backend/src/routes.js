@@ -1,6 +1,13 @@
 const express = require('express');
+const SessionController = require('./controllers/SessionController');
+const SpotController = require('./controllers/SpotController');
+const UserDashboardController = require('./controllers/UserDashboardController');
+const BookingController = require('./controllers/BookingController');
+const multer = require('multer');
+const uploadConfig = require('./config/upload');
 
 const routes = express.Router();
+const upload = multer(uploadConfig);
 
 //methods
 //GET:get information
@@ -20,10 +27,12 @@ routes.put('/users/:id', (req, res) => {
     return res.json({ message: req.params.id });
 })
 
-routes.post('/users', (req, res) => {
-    //req.query: access queries (filters)
-    //req.body: access json
-    return res.json(req.body);
-})
+routes.post('/users', SessionController.store);
+routes.get('/spots', SpotController.index);
+routes.post('/spots', upload.single('thumbnail'), SpotController.store);
+
+routes.get('/dashboard', UserDashboardController.show);
+
+routes.post('/spots/:spot_id/bookings', BookingController.store);
 
 module.exports = routes;
